@@ -1,0 +1,157 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ipify API",
+    "description": "A simple public IP address API, easy to integrate into any application in seconds. ipify provides endpoints to retrieve your public IP address in various formats (text, JSON, JSONP) for both IPv4 and IPv6.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://www.ipify.org/"
+    },
+    "license": {
+      "name": "Open Source",
+      "url": "https://github.com/rdegges/ipify-api"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.ipify.org",
+      "description": "IPv4 API endpoint"
+    },
+    {
+      "url": "https://api64.ipify.org",
+      "description": "Universal IPv4/IPv6 API endpoint"
+    },
+    {
+      "url": "https://api6.ipify.org",
+      "description": "IPv6 only API endpoint"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Get public IP address",
+        "description": "Returns the public IP address of the requester. Supports multiple response formats including plain text, JSON, and JSONP. Works with IPv4 and IPv6 depending on the server endpoint used.",
+        "operationId": "getPublicIp",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "The response format. If not specified, returns plain text.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "jsonp"
+              ]
+            }
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "description": "The callback function name for JSONP responses. Only applicable when format=jsonp. Defaults to 'callback' if not specified.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "callback"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved public IP address",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "98.207.254.136"
+                },
+                "examples": {
+                  "ipv4": {
+                    "value": "98.207.254.136",
+                    "summary": "IPv4 address"
+                  },
+                  "ipv6": {
+                    "value": "2a00:1450:400f:80d::200e",
+                    "summary": "IPv6 address"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpResponse"
+                },
+                "examples": {
+                  "ipv4": {
+                    "value": {
+                      "ip": "98.207.254.136"
+                    },
+                    "summary": "IPv4 address in JSON"
+                  },
+                  "ipv6": {
+                    "value": {
+                      "ip": "2a00:1450:400f:80d::200e"
+                    },
+                    "summary": "IPv6 address in JSON"
+                  }
+                }
+              },
+              "application/javascript": {
+                "schema": {
+                  "type": "string",
+                  "example": "callback({\"ip\":\"98.207.254.136\"});"
+                },
+                "examples": {
+                  "default": {
+                    "value": "callback({\"ip\":\"98.207.254.136\"});",
+                    "summary": "JSONP with default callback"
+                  },
+                  "custom": {
+                    "value": "getip({\"ip\":\"98.207.254.136\"});",
+                    "summary": "JSONP with custom callback"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "tags": [
+          "IP Address"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IpResponse": {
+        "type": "object",
+        "required": [
+          "ip"
+        ],
+        "properties": {
+          "ip": {
+            "type": "string",
+            "description": "The public IP address of the requester. Can be either IPv4 or IPv6 format depending on the endpoint used.",
+            "example": "98.207.254.136"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "IP Address",
+      "description": "Operations for retrieving public IP addresses"
+    }
+  ],
+  "externalDocs": {
+    "description": "Find more information about ipify API",
+    "url": "https://www.ipify.org/"
+  }
+}

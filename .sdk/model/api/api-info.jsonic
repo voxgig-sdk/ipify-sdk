@@ -1,0 +1,35 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://www.ipify.org/"
+      }
+      description: "A simple public IP address API, easy to integrate into any application in seconds. ipify provides endpoints to retrieve your public IP address in various formats (text, JSON, JSONP) for both IPv4 and IPv6."
+      license: {
+        name: "Open Source"
+        url: "https://github.com/rdegges/ipify-api"
+      }
+      servers: [
+        {
+          description: "IPv4 API endpoint"
+          url: "https://api.ipify.org"
+        }
+        {
+          description: "Universal IPv4/IPv6 API endpoint"
+          url: "https://api64.ipify.org"
+        }
+        {
+          description: "IPv6 only API endpoint"
+          url: "https://api6.ipify.org"
+        }
+      ]
+      title: "ipify API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

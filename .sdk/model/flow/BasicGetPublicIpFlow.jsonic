@@ -1,0 +1,28 @@
+# BasicGetPublicIpFlow
+
+main: kit: flow: BasicGetPublicIpFlow:
+{
+  entity: "get_public_ip",
+  kind: "basic",
+  name: "BasicGetPublicIpFlow",
+  step: [
+    {
+      input: {
+        ref: "get_public_ip_ref01",
+        srcdatavar: "get_public_ip_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-get_public_ip_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetPublicIpFlow"
+}

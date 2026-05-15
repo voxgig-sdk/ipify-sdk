@@ -1,0 +1,22 @@
+{
+  "existing": {
+    "get_public_ip": {
+      "GET_PUBLIC_IP00": {
+        "ip": "sa"
+      },
+      "GET_PUBLIC_IP01": {
+        "ip": "s14"
+      },
+      "GET_PUBLIC_IP02": {
+        "ip": "s1e"
+      }
+    }
+  },
+  "new": {
+    "get_public_ip": {
+      "get_public_ip_ref01": {
+        "ip": "s28"
+      }
+    }
+  }
+}
