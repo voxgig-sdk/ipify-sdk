@@ -12,9 +12,9 @@ import (
 	"sync"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/ipify-sdk"
+	sdk "github.com/voxgig-sdk/ipify-sdk/go"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/ipify-sdk/go/utility/struct"
 )
 
 var envLocalOnce sync.Once

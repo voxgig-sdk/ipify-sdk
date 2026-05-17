@@ -2,13 +2,16 @@
   "existing": {
     "get_public_ip": {
       "GET_PUBLIC_IP00": {
-        "ip": "sa"
+        "ip": "sa",
+        "id": "GET_PUBLIC_IP00"
       },
       "GET_PUBLIC_IP01": {
-        "ip": "s14"
+        "ip": "s14",
+        "id": "GET_PUBLIC_IP01"
       },
       "GET_PUBLIC_IP02": {
-        "ip": "s1e"
+        "ip": "s1e",
+        "id": "GET_PUBLIC_IP02"
       }
     }
   },

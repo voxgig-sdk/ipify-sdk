@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/ipify-sdk/core"
+	"github.com/voxgig-sdk/ipify-sdk/go/core"
 )
 
 type LogFeature struct {

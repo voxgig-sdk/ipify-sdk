@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/ipify-sdk"
-	"github.com/voxgig-sdk/ipify-sdk/core"
+	sdk "github.com/voxgig-sdk/ipify-sdk/go"
+	"github.com/voxgig-sdk/ipify-sdk/go/core"
 )
 
 func TestGetPublicIpDirect(t *testing.T) {

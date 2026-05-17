@@ -4,9 +4,9 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/ipify-sdk"
+	sdk "github.com/voxgig-sdk/ipify-sdk/go"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/ipify-sdk/go/utility/struct"
 )
 
 func TestPrimaryUtility(t *testing.T) {

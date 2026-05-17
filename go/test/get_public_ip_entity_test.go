@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/ipify-sdk"
-	"github.com/voxgig-sdk/ipify-sdk/core"
+	sdk "github.com/voxgig-sdk/ipify-sdk/go"
+	"github.com/voxgig-sdk/ipify-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/ipify-sdk/go/utility/struct"
 )
 
 func TestGetPublicIpEntity(t *testing.T) {
