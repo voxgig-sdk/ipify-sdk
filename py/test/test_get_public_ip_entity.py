@@ -91,7 +91,6 @@ def _get_public_ip_basic_setup(extra):
         "IPIFY_TEST_GET_PUBLIC_IP_ENTID": idmap,
         "IPIFY_TEST_LIVE": "FALSE",
         "IPIFY_TEST_EXPLAIN": "FALSE",
-        "IPIFY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +101,6 @@ def _get_public_ip_basic_setup(extra):
     if env.get("IPIFY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("IPIFY_APIKEY"),
             },
             extra or {},
         ])

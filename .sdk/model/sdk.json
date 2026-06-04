@@ -28,7 +28,17 @@
           }
         ],
         "title": "ipify API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Look up your public IP address over a tiny, no-auth HTTP endpoint with IPv4, IPv6, and JSON/JSONP output",
+        "homepage": "https://www.ipify.org/",
+        "docs_url": "https://www.ipify.org/",
+        "license_short": "Open source, free to use without attribution or registration",
+        "license_md": "- ipify is open source and free to use for any purpose.\n- No API key, sign-up, or attribution is required.\n- The maintainers state the service does not log visitor information.\n- Operated as a community project; no SLA is offered.",
+        "about_md": "[ipify](https://www.ipify.org/) is a small, free public IP address lookup API created and maintained by [Randall Degges](https://www.rdegges.com/). The service has a single job: tell the caller what public IP address the request came from. It runs without authentication, without registration, and without logging visitor information.\n\nWhat you get from the API:\n\n- The caller's public IPv4 address via `https://api.ipify.org`\n- The caller's public IPv6 address via `https://api6.ipify.org`\n- A dual-stack endpoint that returns whichever protocol the connection used via `https://api64.ipify.org`\n- Response formats selectable via a `format` query parameter: plain text (default), `json`, or `jsonp` (with a customizable `callback` parameter)\n\nThe project advertises no rate limit and is intended to be embedded in client and server applications that need to discover their own external IP. Note that community catalogue checks report CORS is disabled on the endpoints, so browser-side use generally relies on the JSONP format.",
+        "entity_desc": {
+          "get_public_ip": "Returns the caller's public IP address from `https://api.ipify.org` (IPv4), `https://api6.ipify.org` (IPv6), or `https://api64.ipify.org` (dual-stack), with `?format=json` or `?format=jsonp&callback=...` for structured output."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -36,7 +46,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "get_public_ip": {

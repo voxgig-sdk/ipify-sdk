@@ -67,14 +67,12 @@ function get_public_ip_direct_setup($mockres)
     $env = Runner::env_override([
         "IPIFY_TEST_GET_PUBLIC_IP_ENTID" => [],
         "IPIFY_TEST_LIVE" => "FALSE",
-        "IPIFY_APIKEY" => "NONE",
     ]);
 
     $live = $env["IPIFY_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["IPIFY_APIKEY"],
         ];
         $client = new IpifySDK($merged_opts);
         return [

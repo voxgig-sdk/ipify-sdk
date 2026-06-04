@@ -59,14 +59,12 @@ def _get_public_ip_direct_setup(mockres):
     env = runner.env_override({
         "IPIFY_TEST_GET_PUBLIC_IP_ENTID": {},
         "IPIFY_TEST_LIVE": "FALSE",
-        "IPIFY_APIKEY": "NONE",
     })
 
     live = env.get("IPIFY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("IPIFY_APIKEY"),
         }
         client = IpifySDK(merged_opts)
         return {

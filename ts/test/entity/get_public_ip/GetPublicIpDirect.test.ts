@@ -74,14 +74,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'IPIFY_TEST_GET_PUBLIC_IP_ENTID': {},
     'IPIFY_TEST_LIVE': 'FALSE',
-    'IPIFY_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.IPIFY_TEST_LIVE
 
   if (live) {
     const client = new IpifySDK({
-      apikey: env.IPIFY_APIKEY,
     })
 
     let idmap: any = env['IPIFY_TEST_GET_PUBLIC_IP_ENTID']
