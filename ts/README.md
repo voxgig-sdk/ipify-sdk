@@ -10,7 +10,7 @@ The TypeScript SDK for the Ipify API — a type-safe, entity-oriented client wit
 
 ## Install
 ```bash
-npm install ipify
+npm install @voxgig-sdk/ipify
 ```
 ## Tutorial: your first API call
 

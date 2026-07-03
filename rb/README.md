@@ -10,13 +10,13 @@ The Ruby SDK for the Ipify API — an entity-oriented client using idiomatic Rub
 
 ## Install
 ```bash
-gem install ipify-sdk
+gem install voxgig-sdk-ipify
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "ipify-sdk"
+gem "voxgig-sdk-ipify"
 ```
 
 Then run:

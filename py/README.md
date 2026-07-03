@@ -10,7 +10,7 @@ The Python SDK for the Ipify API — an entity-oriented client following Pythoni
 
 ## Install
 ```bash
-pip install ipify-sdk
+pip install voxgig-sdk-ipify
 ```
 
 Or install from source:

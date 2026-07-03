@@ -10,7 +10,7 @@ The PHP SDK for the Ipify API — an entity-oriented client using PHP convention
 
 ## Install
 ```bash
-composer require voxgig/ipify-sdk
+composer require voxgig-sdk/ipify
 ```
 
 

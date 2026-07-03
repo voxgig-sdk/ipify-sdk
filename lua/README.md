@@ -10,7 +10,7 @@ The Lua SDK for the Ipify API — an entity-oriented client using Lua convention
 
 ## Install
 ```bash
-luarocks install ipify-sdk
+luarocks install voxgig-sdk-ipify
 ```
 
 If the module is not yet published, add the source directory to
