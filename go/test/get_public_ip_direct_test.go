@@ -99,12 +99,14 @@ func get_public_ipDirectSetup(mockres any) *get_public_ipDirectSetupResult {
 	env := envOverride(map[string]any{
 		"IPIFY_TEST_GET_PUBLIC_IP_ENTID": map[string]any{},
 		"IPIFY_TEST_LIVE":    "FALSE",
+		"IPIFY_APIKEY":       "NONE",
 	})
 
 	live := env["IPIFY_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["IPIFY_APIKEY"],
 		}
 		client := sdk.NewIpifySDK(mergedOpts)
 

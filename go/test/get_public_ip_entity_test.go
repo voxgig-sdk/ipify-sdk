@@ -117,6 +117,7 @@ func get_public_ipBasicSetup(extra map[string]any) *entityTestSetup {
 		"IPIFY_TEST_GET_PUBLIC_IP_ENTID": idmap,
 		"IPIFY_TEST_LIVE":      "FALSE",
 		"IPIFY_TEST_EXPLAIN":   "FALSE",
+		"IPIFY_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["IPIFY_TEST_GET_PUBLIC_IP_ENTID"])
@@ -127,6 +128,7 @@ func get_public_ipBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["IPIFY_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["IPIFY_APIKEY"],
 			},
 			extra,
 		})

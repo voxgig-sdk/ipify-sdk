@@ -1,21 +1,8 @@
 # Ipify SDK
 
-Look up your public IP address over a tiny, no-auth HTTP endpoint with IPv4, IPv6, and JSON/JSONP output
+ipify API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About ipify API
-
-[ipify](https://www.ipify.org/) is a small, free public IP address lookup API created and maintained by [Randall Degges](https://www.rdegges.com/). The service has a single job: tell the caller what public IP address the request came from. It runs without authentication, without registration, and without logging visitor information.
-
-What you get from the API:
-
-- The caller's public IPv4 address via `https://api.ipify.org`
-- The caller's public IPv6 address via `https://api6.ipify.org`
-- A dual-stack endpoint that returns whichever protocol the connection used via `https://api64.ipify.org`
-- Response formats selectable via a `format` query parameter: plain text (default), `json`, or `jsonp` (with a customizable `callback` parameter)
-
-The project advertises no rate limit and is intended to be embedded in client and server applications that need to discover their own external IP. Note that community catalogue checks report CORS is disabled on the endpoints, so browser-side use generally relies on the JSONP format.
 
 ## Try it
 
@@ -49,27 +36,31 @@ gem install ipify-sdk
 luarocks install ipify-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { IpifySDK } from 'ipify'
 
-const client = new IpifySDK({})
+const client = new IpifySDK({
+  apikey: process.env.IPIFY_APIKEY,
+})
 
+// Load getpublicip data
+const getpublicip = await client.GetPublicIp().load({})
+console.log(getpublicip.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -99,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **GetPublicIp** | Returns the caller's public IP address from `https://api.ipify.org` (IPv4), `https://api6.ipify.org` (IPv6), or `https://api64.ipify.org` (dual-stack), with `?format=json` or `?format=jsonp&callback=...` for structured output. | `/` |
+| **GetPublicIp** |  | `/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -109,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from ipify_sdk import IpifySDK
 
-client = IpifySDK({})
+client = IpifySDK({
+    "apikey": os.environ.get("IPIFY_APIKEY"),
+})
 
 
 # Load a specific getpublicip
-getpublicip, err = client.GetPublicIp(None).load(
-    {"id": "example_id"}, None
-)
+getpublicip, err = client.GetPublicIp().load({"id": "example_id"})
+print(getpublicip)
 ```
 
 ### PHP
@@ -126,13 +119,14 @@ getpublicip, err = client.GetPublicIp(None).load(
 <?php
 require_once 'ipify_sdk.php';
 
-$client = new IpifySDK([]);
+$client = new IpifySDK([
+    "apikey" => getenv("IPIFY_APIKEY"),
+]);
 
 
 // Load a specific getpublicip
-[$getpublicip, $err] = $client->GetPublicIp(null)->load(
-    ["id" => "example_id"], null
-);
+[$getpublicip, $err] = $client->GetPublicIp()->load(["id" => "example_id"]);
+print_r($getpublicip);
 ```
 
 ### Golang
@@ -140,8 +134,13 @@ $client = new IpifySDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/ipify-sdk/go"
 
-client := sdk.NewIpifySDK(map[string]any{})
+client := sdk.NewIpifySDK(map[string]any{
+    "apikey": os.Getenv("IPIFY_APIKEY"),
+})
 
+// Load getpublicip data
+getpublicip, err := client.GetPublicIp(nil).Load(map[string]any{}, nil)
+fmt.Println(getpublicip)
 ```
 
 ### Ruby
@@ -149,13 +148,14 @@ client := sdk.NewIpifySDK(map[string]any{})
 ```ruby
 require_relative "Ipify_sdk"
 
-client = IpifySDK.new({})
+client = IpifySDK.new({
+  "apikey" => ENV["IPIFY_APIKEY"],
+})
 
 
 # Load a specific getpublicip
-getpublicip, err = client.GetPublicIp(nil).load(
-  { "id" => "example_id" }, nil
-)
+getpublicip, err = client.GetPublicIp().load({ "id" => "example_id" })
+puts getpublicip
 ```
 
 ### Lua
@@ -163,13 +163,14 @@ getpublicip, err = client.GetPublicIp(nil).load(
 ```lua
 local sdk = require("ipify_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("IPIFY_APIKEY"),
+})
 
 
 -- Load a specific getpublicip
-local getpublicip, err = client:GetPublicIp(nil):load(
-  { id = "example_id" }, nil
-)
+local getpublicip, err = client:GetPublicIp():load({ id = "example_id" })
+print(getpublicip)
 ```
 
 ## Unit testing in offline mode
@@ -188,25 +189,21 @@ const result = await client.GetPublicIp().load({ id: 'test01' })
 ### Python
 
 ```python
-client = IpifySDK.test(None, None)
-result, err = client.GetPublicIp(None).load(
-    {"id": "test01"}, None
-)
+client = IpifySDK.test()
+result, err = client.GetPublicIp().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = IpifySDK::test(null, null);
-[$result, $err] = $client->GetPublicIp(null)->load(
-    ["id" => "test01"], null
-);
+$client = IpifySDK::test();
+[$result, $err] = $client->GetPublicIp()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.GetPublicIp(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -215,19 +212,15 @@ result, err := client.GetPublicIp(nil).Load(
 ### Ruby
 
 ```ruby
-client = IpifySDK.test(nil, nil)
-result, err = client.GetPublicIp(nil).load(
-  { "id" => "test01" }, nil
-)
+client = IpifySDK.test
+result, err = client.GetPublicIp().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:GetPublicIp(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:GetPublicIp():load({ id = "test01" })
 ```
 
 ## How it works
@@ -331,15 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the ipify API
-
-- Upstream: [https://www.ipify.org/](https://www.ipify.org/)
-
-- ipify is open source and free to use for any purpose.
-- No API key, sign-up, or attribution is required.
-- The maintainers state the service does not log visitor information.
-- Operated as a community project; no SLA is offered.
 
 ---
 

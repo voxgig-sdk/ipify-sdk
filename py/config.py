@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://api.ipify.org",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -26,42 +29,45 @@ def make_config():
       "get_public_ip": {
         "fields": [
           {
+            "active": True,
             "name": "ip",
             "req": True,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
         ],
         "name": "get_public_ip",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": "callback",
                       "kind": "query",
                       "name": "callback",
                       "orig": "callback",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "format",
                       "orig": "format",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
                 "method": "GET",
                 "orig": "/",
+                "parts": [],
                 "select": {
                   "exist": [
                     "callback",
@@ -72,12 +78,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "parts": [],
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },

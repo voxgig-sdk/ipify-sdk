@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://api.ipify.org',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -55,42 +59,45 @@ class Config {
     "get_public_ip": {
       "fields": [
         {
+          "active": true,
           "name": "ip",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         }
       ],
       "name": "get_public_ip",
       "op": {
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "example": "callback",
                     "kind": "query",
                     "name": "callback",
                     "orig": "callback",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "format",
                     "orig": "format",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
               "method": "GET",
               "orig": "/",
+              "parts": [],
               "select": {
                 "exist": [
                   "callback",
@@ -101,12 +108,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "parts": [],
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },
