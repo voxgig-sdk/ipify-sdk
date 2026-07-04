@@ -20,9 +20,6 @@ class IpifyConfig
             ],
             "options" => [
                 "base" => "https://api.ipify.org",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

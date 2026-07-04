@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `IpifySDK.test()`.
 ## GetPublicIpEntity
 
 ```ts
-const get_public_ip = client.GetPublicIp()
+const get_public_ip = client.get_public_ip
 ```
 
 ### Fields
@@ -126,7 +125,7 @@ const get_public_ip = client.GetPublicIp()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetPublicIp().load({ id: 'get_public_ip_id' })
+const result = await client.get_public_ip.load({ id: 'get_public_ip_id' })
 ```
 
 ### Common Methods

@@ -245,6 +245,9 @@ func (sdk *IpifySDK) Direct(fetchargs map[string]any) (map[string]any, error) {
 }
 
 
+// GetPublicIp returns a GetPublicIp entity bound to this client.
+// Idiomatic usage: client.GetPublicIp(nil).List(nil, nil) or
+// client.GetPublicIp(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpifySDK) GetPublicIp(data map[string]any) IpifyEntity {
 	return NewGetPublicIpEntityFunc(sdk, data)
 }

@@ -2,6 +2,8 @@
 
 import { GetPublicIpEntity } from './entity/GetPublicIpEntity'
 
+export type * from './IpifyTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class IpifySDK {
 
 
 
+  _get_public_ip?: GetPublicIpEntity
+
+  // Idiomatic facade: `client.get_public_ip.list()` / `client.get_public_ip.load({ id })`.
+  get get_public_ip(): GetPublicIpEntity {
+    return (this._get_public_ip ??= new GetPublicIpEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_public_ip` instead. */
   GetPublicIp(data?: any) {
     const self = this
     return new GetPublicIpEntity(self,data)

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetPublicIp,
+  GetPublicIpLoadMatch,
+} from '../IpifyTypes'
 
 // TODO: needs Entity superclass
-class GetPublicIpEntity extends IpifyEntityBase {
+class GetPublicIpEntity extends IpifyEntityBase<GetPublicIp> {
 
   constructor(client: IpifySDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class GetPublicIpEntity extends IpifyEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: GetPublicIpLoadMatch, ctrl?: Control): Promise<GetPublicIp> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class GetPublicIpEntity extends IpifyEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetPublicIp> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

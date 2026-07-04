@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:get_public_ip():list() / client:get_public_ip():load({ id = ... })
+function IpifySDK:get_public_ip(data)
+  local EntityMod = require("entity.get_public_ip_entity")
+  if data == nil then
+    if self._get_public_ip == nil then
+      self._get_public_ip = EntityMod.new(self, nil)
+    end
+    return self._get_public_ip
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_public_ip() instead.
 function IpifySDK:GetPublicIp(data)
   local EntityMod = require("entity.get_public_ip_entity")
   return EntityMod.new(self, data)

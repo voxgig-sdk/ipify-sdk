@@ -49,8 +49,7 @@ class GetPublicIpEntityTest extends TestCase
         // LOAD
         $get_public_ip_ref01_ent = $client->GetPublicIp(null);
         $get_public_ip_ref01_match_dt0 = [];
-        [$get_public_ip_ref01_data_dt0_loaded, $err] = $get_public_ip_ref01_ent->load($get_public_ip_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $get_public_ip_ref01_data_dt0_loaded = $get_public_ip_ref01_ent->load($get_public_ip_ref01_match_dt0, null);
         $this->assertNotNull($get_public_ip_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function get_public_ip_basic_setup($extra)
         "IPIFY_TEST_GET_PUBLIC_IP_ENTID" => $idmap,
         "IPIFY_TEST_LIVE" => "FALSE",
         "IPIFY_TEST_EXPLAIN" => "FALSE",
-        "IPIFY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function get_public_ip_basic_setup($extra)
     if ($env["IPIFY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["IPIFY_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -49,8 +49,7 @@ class TestGetPublicIpEntity:
         # LOAD
         get_public_ip_ref01_ent = client.GetPublicIp(None)
         get_public_ip_ref01_match_dt0 = {}
-        get_public_ip_ref01_data_dt0_loaded, err = get_public_ip_ref01_ent.load(get_public_ip_ref01_match_dt0, None)
-        assert err is None
+        get_public_ip_ref01_data_dt0_loaded = get_public_ip_ref01_ent.load(get_public_ip_ref01_match_dt0, None)
         assert get_public_ip_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _get_public_ip_basic_setup(extra):
         "IPIFY_TEST_GET_PUBLIC_IP_ENTID": idmap,
         "IPIFY_TEST_LIVE": "FALSE",
         "IPIFY_TEST_EXPLAIN": "FALSE",
-        "IPIFY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _get_public_ip_basic_setup(extra):
     if env.get("IPIFY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("IPIFY_APIKEY"),
             },
             extra or {},
         ])

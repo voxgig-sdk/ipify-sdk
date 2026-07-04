@@ -9,9 +9,12 @@ The TypeScript SDK for the Ipify API — a type-safe, entity-oriented client wit
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/ipify
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/ipify-sdk/releases](https://github.com/voxgig-sdk/ipify-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { IpifySDK } from 'ipify'
+import { IpifySDK } from '@voxgig-sdk/ipify'
 
-const client = new IpifySDK({
-  apikey: process.env.IPIFY_APIKEY,
-})
+const client = new IpifySDK()
 ```
 
 ### 3. Load a getpublicip
 
 ```ts
-const result = await client.GetPublicIp().load({ id: 'example_id' })
+const result = await client.getpublicip.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = IpifySDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.getpublicip.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new IpifySDK({ apikey: '...' })
+const client = new IpifySDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.getpublicip
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new IpifySDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -134,7 +134,6 @@ Create a `.env.local` file at the project root:
 
 ```
 IPIFY_TEST_LIVE=TRUE
-IPIFY_APIKEY=<your-key>
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new IpifySDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new IpifySDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -266,7 +263,7 @@ API path: `/`
 
 ### GetPublicIp
 
-Create an instance: `const get_public_ip = client.GetPublicIp()`
+Create an instance: `const get_public_ip = client.get_public_ip`
 
 #### Operations
 
@@ -283,7 +280,7 @@ Create an instance: `const get_public_ip = client.GetPublicIp()`
 #### Example: Load
 
 ```ts
-const get_public_ip = await client.GetPublicIp().load({ id: 'get_public_ip_id' })
+const get_public_ip = await client.get_public_ip.load({ id: 'get_public_ip_id' })
 ```
 
 
@@ -344,7 +341,7 @@ ipify/
 Import the SDK from the package root:
 
 ```ts
-import { IpifySDK } from 'ipify'
+import { IpifySDK } from '@voxgig-sdk/ipify'
 ```
 
 ### Entity state
@@ -354,11 +351,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const getpublicip = client.getpublicip
+await getpublicip.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// getpublicip.data() now returns the loaded getpublicip data
+// getpublicip.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'IPIFY_TEST_GET_PUBLIC_IP_ENTID': idmap,
     'IPIFY_TEST_LIVE': 'FALSE',
     'IPIFY_TEST_EXPLAIN': 'FALSE',
-    'IPIFY_APIKEY': 'NONE',
   })
 
   idmap = env['IPIFY_TEST_GET_PUBLIC_IP_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new IpifySDK(merge([
       {
-        apikey: env.IPIFY_APIKEY,
       },
       extra
     ]))
