@@ -32,8 +32,9 @@ client = IpifySDK.new
 
 ```ruby
 begin
-  result = client.getpublicip.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare GetPublicIp record (raises on error).
+  getpublicip = client.GetPublicIp.load({ "id" => "example_id" })
+  puts getpublicip
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = IpifySDK.test
+client = IpifySDK.test({
+  "entity" => { "getpublicip" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.getpublicip.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+getpublicip = client.GetPublicIp.load({ "id" => "test01" })
+puts getpublicip
 ```
 
 ### Use a custom fetch function
@@ -218,7 +223,7 @@ API path: `/`
 
 ### GetPublicIp
 
-Create an instance: `const get_public_ip = client.get_public_ip`
+Create an instance: `get_public_ip = client.GetPublicIp`
 
 #### Operations
 
@@ -234,8 +239,9 @@ Create an instance: `const get_public_ip = client.get_public_ip`
 
 #### Example: Load
 
-```ts
-const get_public_ip = await client.get_public_ip.load({ id: 'get_public_ip_id' })
+```ruby
+# load returns the bare GetPublicIp record (raises on error).
+get_public_ip = client.GetPublicIp.load({ "id" => "get_public_ip_id" })
 ```
 
 
@@ -310,7 +316,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-getpublicip = client.getpublicip
+getpublicip = client.GetPublicIp
 getpublicip.load({ "id" => "example_id" })
 
 # getpublicip.data_get now returns the loaded getpublicip data

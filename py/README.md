@@ -33,10 +33,12 @@ client = IpifySDK()
 
 ### 3. Load a getpublicip
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.getpublicip.load({"id": "example_id"})
-    print(result)
+    getpublicip = client.GetPublicIp().load({"id": "example_id"})
+    print(getpublicip)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = IpifySDK.test()
 
-result = client.getpublicip.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+getpublicip = client.GetPublicIp().load({"id": "test01"})
+# getpublicip contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -218,7 +221,7 @@ API path: `/`
 
 ### GetPublicIp
 
-Create an instance: `const get_public_ip = client.get_public_ip`
+Create an instance: `get_public_ip = client.GetPublicIp()`
 
 #### Operations
 
@@ -234,8 +237,8 @@ Create an instance: `const get_public_ip = client.get_public_ip`
 
 #### Example: Load
 
-```ts
-const get_public_ip = await client.get_public_ip.load({ id: 'get_public_ip_id' })
+```python
+get_public_ip = client.GetPublicIp().load({"id": "get_public_ip_id"})
 ```
 
 
@@ -309,7 +312,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-getpublicip = client.getpublicip
+getpublicip = client.GetPublicIp()
 getpublicip.load({"id": "example_id"})
 
 # getpublicip.data_get() now returns the loaded getpublicip data

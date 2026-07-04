@@ -109,7 +109,7 @@ Alias for `IpifySDK.test()`.
 ## GetPublicIpEntity
 
 ```ts
-const get_public_ip = client.get_public_ip
+const get_public_ip = client.GetPublicIp()
 ```
 
 ### Fields
@@ -125,7 +125,7 @@ const get_public_ip = client.get_public_ip
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.get_public_ip.load({ id: 'get_public_ip_id' })
+const result = await client.GetPublicIp().load({ id: 'get_public_ip_id' })
 ```
 
 ### Common Methods

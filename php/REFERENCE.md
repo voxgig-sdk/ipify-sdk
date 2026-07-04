@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## GetPublicIpEntity
 
 ```php
-$get_public_ip = $client->get_public_ip();
+$get_public_ip = $client->GetPublicIp();
 ```
 
 ### Fields
@@ -101,7 +101,7 @@ $get_public_ip = $client->get_public_ip();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->get_public_ip()->load(["id" => "get_public_ip_id"]);
+$result = $client->GetPublicIp()->load(["id" => "get_public_ip_id"]);
 ```
 
 ### Common Methods

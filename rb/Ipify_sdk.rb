@@ -208,13 +208,7 @@ class IpifySDK
   end
 
 
-  # Idiomatic facade: client.get_public_ip.list / client.get_public_ip.load({ "id" => ... })
-  def get_public_ip
-    require_relative 'entity/get_public_ip_entity'
-    @get_public_ip ||= GetPublicIpEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_public_ip instead.
+  # Canonical facade: client.GetPublicIp.list / client.GetPublicIp.load({ "id" => ... })
   def GetPublicIp(data = nil)
     require_relative 'entity/get_public_ip_entity'
     GetPublicIpEntity.new(self, data)

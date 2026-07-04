@@ -220,25 +220,15 @@ class IpifySDK:
         }
 
 
-    @property
-    def get_public_ip(self):
-        """Idiomatic facade: client.get_public_ip.list() / client.get_public_ip.load({"id": ...})."""
-        from entity.get_public_ip_entity import GetPublicIpEntity
-        cached = getattr(self, "_get_public_ip", None)
-        if cached is None:
-            cached = GetPublicIpEntity(self, None)
-            self._get_public_ip = cached
-        return cached
-
-    def GetPublicIp(self, data=None):
-        # Deprecated: use client.get_public_ip instead.
+    def GetPublicIp(self, data=None) -> "GetPublicIpEntity":
+        """Entity factory: client.GetPublicIp().list({}) / client.GetPublicIp().load({"id": ...})."""
         from entity.get_public_ip_entity import GetPublicIpEntity
         return GetPublicIpEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "IpifySDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class IpifySDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.get_public_ip_entity import GetPublicIpEntity

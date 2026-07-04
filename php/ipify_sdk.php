@@ -233,10 +233,10 @@ class IpifySDK
 
     private $_get_public_ip = null;
 
-    // Idiomatic facade: $client->get_public_ip()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetPublicIp() (PHP method
-    // names are case-insensitive).
-    public function get_public_ip($data = null)
+    // Canonical facade: $client->GetPublicIp()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_public_ip()
+    // resolves here too.
+    public function GetPublicIp($data = null)
     {
         require_once __DIR__ . '/entity/get_public_ip_entity.php';
         if ($data === null) {

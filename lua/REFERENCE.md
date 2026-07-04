@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## GetPublicIpEntity
 
 ```lua
-local get_public_ip = client:get_public_ip(nil)
+local get_public_ip = client:GetPublicIp(nil)
 ```
 
 ### Fields
@@ -99,7 +99,7 @@ local get_public_ip = client:get_public_ip(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:get_public_ip():load({ id = "get_public_ip_id" })
+local result, err = client:GetPublicIp():load({ id = "get_public_ip_id" })
 ```
 
 ### Common Methods

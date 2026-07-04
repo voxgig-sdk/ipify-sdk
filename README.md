@@ -26,9 +26,9 @@ import { IpifySDK } from '@voxgig-sdk/ipify'
 
 const client = new IpifySDK()
 
-// Load getpublicip data
-const getpublicip = await client.getpublicip.load({})
-console.log(getpublicip.data)
+// Load getpublicip data (returns a GetPublicIp)
+const getpublicip = await client.GetPublicIp().load()
+console.log(getpublicip)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -84,8 +84,8 @@ from ipify_sdk import IpifySDK
 client = IpifySDK()
 
 
-# Load a specific getpublicip
-getpublicip = client.getpublicip.load({"id": "example_id"})
+# Load a specific getpublicip (returns the record, raises on error)
+getpublicip = client.GetPublicIp().load({"id": "example_id"})
 print(getpublicip)
 ```
 
@@ -98,8 +98,8 @@ require_once 'ipify_sdk.php';
 $client = new IpifySDK();
 
 
-// Load a specific getpublicip
-$getpublicip = $client->getpublicip()->load(["id" => "example_id"]);
+// Load a specific getpublicip (returns the bare record; throws on error)
+$getpublicip = $client->GetPublicIp()->load(["id" => "example_id"]);
 print_r($getpublicip);
 ```
 
@@ -123,8 +123,8 @@ require_relative "Ipify_sdk"
 client = IpifySDK.new
 
 
-# Load a specific getpublicip
-getpublicip = client.getpublicip.load({ "id" => "example_id" })
+# Load a specific getpublicip (returns the bare record; raises on error)
+getpublicip = client.GetPublicIp.load({ "id" => "example_id" })
 puts getpublicip
 ```
 
@@ -137,7 +137,7 @@ local client = sdk.new()
 
 
 -- Load a specific getpublicip
-local getpublicip, err = client:getpublicip():load({ id = "example_id" })
+local getpublicip, err = client:GetPublicIp():load({ id = "example_id" })
 print(getpublicip)
 ```
 
@@ -150,22 +150,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = IpifySDK.test()
-const result = await client.getpublicip.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const getpublicip = await client.GetPublicIp().load({ id: 'test01' })
+// getpublicip is a bare GetPublicIp populated with mock data
+console.log(getpublicip)
 ```
 
 ### Python
 
 ```python
 client = IpifySDK.test()
-result = client.getpublicip.load({"id": "test01"})
+getpublicip = client.GetPublicIp().load({"id": "test01"})
+print(getpublicip)
 ```
 
 ### PHP
 
 ```php
-$client = IpifySDK::test();
-$result = $client->getpublicip()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = IpifySDK::test([
+    "entity" => ["getpublicip" => ["test01" => ["id" => "test01"]]],
+]);
+$getpublicip = $client->GetPublicIp()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -180,15 +185,18 @@ result, err := client.GetPublicIp(nil).Load(
 ### Ruby
 
 ```ruby
-client = IpifySDK.test
-result = client.getpublicip.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = IpifySDK.test({
+  "entity" => { "getpublicip" => { "test01" => { "id" => "test01" } } },
+})
+getpublicip = client.GetPublicIp.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:getpublicip():load({ id = "test01" })
+local result, err = client:GetPublicIp():load({ id = "test01" })
 ```
 
 ## How it works
@@ -236,6 +244,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

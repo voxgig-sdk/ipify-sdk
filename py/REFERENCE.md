@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## GetPublicIpEntity
 
 ```python
-get_public_ip = client.get_public_ip
+get_public_ip = client.GetPublicIp()
 ```
 
 ### Fields
@@ -96,7 +96,7 @@ get_public_ip = client.get_public_ip
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.get_public_ip.load({"id": "get_public_ip_id"})
+result = client.GetPublicIp().load({"id": "get_public_ip_id"})
 ```
 
 ### Common Methods
