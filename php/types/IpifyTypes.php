@@ -18,7 +18,7 @@ class GetPublicIp
     public string $ip;
 }
 
-/** Match filter for GetPublicIp#load (any subset of GetPublicIp fields). */
+/** Request payload for GetPublicIp#load. */
 class GetPublicIpLoadMatch
 {
     public ?string $ip = null;

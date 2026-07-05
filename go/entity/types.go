@@ -13,8 +13,7 @@ type GetPublicIp struct {
 	Ip string `json:"ip"`
 }
 
-// GetPublicIpLoadMatch mirrors the get_public_ip fields as an all-optional match
-// filter (Go analog of Partial<GetPublicIp>).
+// GetPublicIpLoadMatch is the typed request payload for GetPublicIp.LoadTyped.
 type GetPublicIpLoadMatch struct {
 	Ip *string `json:"ip,omitempty"`
 }

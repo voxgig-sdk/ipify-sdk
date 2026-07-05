@@ -97,7 +97,7 @@ get_public_ip := client.GetPublicIp(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
+| `ip` | `string` | Yes |  |
 
 ### Operations
 
@@ -106,7 +106,7 @@ get_public_ip := client.GetPublicIp(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.GetPublicIp(nil).Load(map[string]any{"id": "get_public_ip_id"}, nil)
+result, err := client.GetPublicIp(nil).Load(nil, nil)
 ```
 
 ### Common Methods

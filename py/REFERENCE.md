@@ -87,7 +87,7 @@ get_public_ip = client.GetPublicIp()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
+| `ip` | `str` | Yes |  |
 
 ### Operations
 
@@ -96,7 +96,7 @@ get_public_ip = client.GetPublicIp()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GetPublicIp().load({"id": "get_public_ip_id"})
+result = client.GetPublicIp().load()
 ```
 
 ### Common Methods

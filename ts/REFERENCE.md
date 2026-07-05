@@ -116,7 +116,7 @@ const get_public_ip = client.GetPublicIp()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
+| `ip` | `string` | Yes |  |
 
 ### Operations
 
@@ -125,7 +125,7 @@ const get_public_ip = client.GetPublicIp()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetPublicIp().load({ id: 'get_public_ip_id' })
+const result = await client.GetPublicIp().load()
 ```
 
 ### Common Methods

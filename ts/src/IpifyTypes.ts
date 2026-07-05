@@ -9,5 +9,7 @@ export interface GetPublicIp {
   ip: string
 }
 
-export type GetPublicIpLoadMatch = Partial<GetPublicIp>
+export interface GetPublicIpLoadMatch {
+  ip?: string
+}
 

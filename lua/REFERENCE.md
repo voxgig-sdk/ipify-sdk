@@ -90,7 +90,7 @@ local get_public_ip = client:GetPublicIp(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
+| `ip` | `string` | Yes |  |
 
 ### Operations
 
@@ -99,7 +99,7 @@ local get_public_ip = client:GetPublicIp(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetPublicIp():load({ id = "get_public_ip_id" })
+local result, err = client:GetPublicIp():load()
 ```
 
 ### Common Methods

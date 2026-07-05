@@ -45,11 +45,11 @@ $client = IpifySDK::test();
 
 Create a new `GetPublicIpEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): IpifyUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,7 +92,7 @@ $get_public_ip = $client->GetPublicIp();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
+| `ip` | `string` | Yes |  |
 
 ### Operations
 
@@ -101,24 +101,24 @@ $get_public_ip = $client->GetPublicIp();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GetPublicIp()->load(["id" => "get_public_ip_id"]);
+$result = $client->GetPublicIp()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -127,7 +127,7 @@ Set the entity match criteria.
 Create a new `GetPublicIpEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

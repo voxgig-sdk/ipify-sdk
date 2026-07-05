@@ -17,7 +17,7 @@ GetPublicIp = Struct.new(
   keyword_init: true
 )
 
-# Match filter for GetPublicIp#load (any subset of GetPublicIp fields).
+# Request payload for GetPublicIp#load.
 #
 # @!attribute [rw] ip
 #   @return [String, nil]

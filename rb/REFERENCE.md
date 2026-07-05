@@ -8,7 +8,7 @@ Complete API reference for the Ipify Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'ipify_sdk'
+require_relative 'Ipify_sdk'
 
 client = IpifySDK.new(options)
 ```
@@ -93,7 +93,7 @@ get_public_ip = client.GetPublicIp
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
+| `ip` | `String` | Yes |  |
 
 ### Operations
 
@@ -102,7 +102,7 @@ get_public_ip = client.GetPublicIp
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetPublicIp.load({ "id" => "get_public_ip_id" })
+result = client.GetPublicIp.load()
 ```
 
 ### Common Methods

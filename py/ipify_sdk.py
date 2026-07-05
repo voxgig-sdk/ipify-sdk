@@ -221,7 +221,7 @@ class IpifySDK:
 
 
     def GetPublicIp(self, data=None) -> "GetPublicIpEntity":
-        """Entity factory: client.GetPublicIp().list({}) / client.GetPublicIp().load({"id": ...})."""
+        """Entity factory: client.GetPublicIp().list() / client.GetPublicIp().load({"id": ...})."""
         from entity.get_public_ip_entity import GetPublicIpEntity
         return GetPublicIpEntity(self, data)
 

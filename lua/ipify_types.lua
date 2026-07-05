@@ -10,6 +10,7 @@
 ---@field ip string
 
 ---@class GetPublicIpLoadMatch
+---@field ip? string
 
 local M = {}
 
