@@ -27,9 +27,9 @@ main: {
           url: "https://api6.ipify.org"
         }
       ]
+      summary: "A simple public IP address API, easy to integrate into any application in seconds."
       title: "ipify API"
       version: "1.0.0"
+      website: "https://www.ipify.org/"
     }
   }
-}
-

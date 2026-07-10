@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single getpublicip — the value is the loaded record.
-    getpublicip, err := client.GetPublicIp(nil).Load(nil, nil)
+    // Load a single getPublicIp — the value is the loaded record.
+    getPublicIp, err := client.GetPublicIp(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(getpublicip)
+    fmt.Println(getPublicIp)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-getpublicip, err := client.GetPublicIp(nil).Load(
+getPublicIp, err := client.GetPublicIp(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(getpublicip) // the returned mock data
+fmt.Println(getPublicIp) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -245,9 +245,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    getpublicip, err := client.GetPublicIp(nil).Load(nil, nil)
+    getPublicIp, err := client.GetPublicIp(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // getpublicip is the returned record
+    // getPublicIp is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -271,7 +271,7 @@ API path: `/`
 
 ### GetPublicIp
 
-Create an instance: `get_public_ip := client.GetPublicIp(nil)`
+Create an instance: `getPublicIp := client.GetPublicIp(nil)`
 
 #### Operations
 
@@ -288,11 +288,11 @@ Create an instance: `get_public_ip := client.GetPublicIp(nil)`
 #### Example: Load
 
 ```go
-get_public_ip, err := client.GetPublicIp(nil).Load(nil, nil)
+getPublicIp, err := client.GetPublicIp(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_public_ip) // the loaded record
+fmt.Println(getPublicIp) // the loaded record
 ```
 
 

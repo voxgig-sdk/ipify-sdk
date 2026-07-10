@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -221,6 +218,7 @@
           "name": "Open Source",
           "url": "https://github.com/rdegges/ipify-api"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "IPv4 API endpoint",
@@ -235,8 +233,10 @@
             "url": "https://api6.ipify.org"
           }
         ],
+        "summary": "A simple public IP address API, easy to integrate into any application in seconds.",
         "title": "ipify API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://www.ipify.org/"
       },
       "option": {},
       "target": {
@@ -289,6 +289,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -339,6 +342,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
