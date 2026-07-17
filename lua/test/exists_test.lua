@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Ipify SDK exists test
 
 local sdk = require("ipify_sdk")
 
