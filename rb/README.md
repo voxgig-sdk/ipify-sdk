@@ -34,7 +34,7 @@ client = IpifySDK.new
 
 ```ruby
 begin
-  # load returns the bare GetPublicIp record (raises on error).
+  # load returns the ENTITY — call data_get for the GetPublicIp record (raises on error).
   getpublicip = client.GetPublicIp.load()
   puts getpublicip
 rescue => err
@@ -117,7 +117,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = IpifySDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 getpublicip = client.GetPublicIp.load()
 puts getpublicip
 ```
@@ -264,7 +265,7 @@ Create an instance: `get_public_ip = client.GetPublicIp`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetPublicIp record (raises on error).
+# load returns the ENTITY — call data_get for the GetPublicIp record (raises on error).
 get_public_ip = client.GetPublicIp.load()
 ```
 

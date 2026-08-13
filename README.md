@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = IpifySDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = IpifySDK.test({
+  entity: {
+    get_public_ip: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const getpublicip = await client.GetPublicIp().load()
-// getpublicip is a bare GetPublicIp populated with mock data
+// getpublicip is the GetPublicIp entity, populated with mock data
+// — call getpublicip.data() for the record itself
 console.log(getpublicip)
 ```
 
@@ -182,7 +191,7 @@ require_once 'ipify_sdk.php';
 $client = new IpifySDK();
 
 
-// Load a specific getpublicip (returns the bare record; throws on error)
+// Load a specific getpublicip (returns the ENTITY; call data_get() for the record; throws on error)
 $getpublicip = $client->GetPublicIp()->load();
 print_r($getpublicip);
 ```
@@ -210,7 +219,7 @@ require_relative "Ipify_sdk"
 client = IpifySDK.new
 
 
-# Load a specific getpublicip (returns the bare record; raises on error)
+# Load a specific getpublicip (returns the ENTITY; call data_get for the record)
 getpublicip = client.GetPublicIp.load()
 puts getpublicip
 ```
@@ -344,6 +353,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.ipify.org/](https://www.ipify.org/)
 

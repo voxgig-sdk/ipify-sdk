@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Ipify SDK exists test
 
 import pytest
 from ipify_sdk import IpifySDK

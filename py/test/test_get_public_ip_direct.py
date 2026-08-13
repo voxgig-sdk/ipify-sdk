@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from ipify_sdk.utility.voxgig_struct import voxgig_struct as vs
 from ipify_sdk import IpifySDK
-from core import helpers
+from ipify_sdk.core import helpers
 from test import runner
 
 

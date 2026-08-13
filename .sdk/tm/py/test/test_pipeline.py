@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import IpifySDK
-from core.error import IpifyError
-from core.result import IpifyResult
-from core.response import IpifyResponse
-from core.spec import IpifySpec
-from feature.base_feature import IpifyBaseFeature
+from projectname_sdk.core.error import IpifyError
+from projectname_sdk.core.result import IpifyResult
+from projectname_sdk.core.response import IpifyResponse
+from projectname_sdk.core.spec import IpifySpec
+from projectname_sdk.feature.base_feature import IpifyBaseFeature
 
 
 def _client():

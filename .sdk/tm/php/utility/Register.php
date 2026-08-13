@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ IpifyUtility::setRegistrar(function (IpifyUtility $u): void {
     $u->prepare_params = [IpifyPrepareParams::class, 'call'];
     $u->prepare_path = [IpifyPreparePath::class, 'call'];
     $u->prepare_query = [IpifyPrepareQuery::class, 'call'];
+    $u->graphql_body = [IpifyGraphql::class, 'body'];
+    $u->graphql_errors = [IpifyGraphql::class, 'errors'];
     $u->result_basic = [IpifyResultBasic::class, 'call'];
     $u->result_body = [IpifyResultBody::class, 'call'];
     $u->result_headers = [IpifyResultHeaders::class, 'call'];

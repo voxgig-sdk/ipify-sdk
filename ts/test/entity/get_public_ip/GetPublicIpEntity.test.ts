@@ -62,7 +62,7 @@ describe('GetPublicIpEntity', async () => {
     // LOAD
     const get_public_ip_ref01_ent = client.GetPublicIp()
     const get_public_ip_ref01_match_dt0: any = {}
-    const get_public_ip_ref01_data_dt0 = await get_public_ip_ref01_ent.load(get_public_ip_ref01_match_dt0)
+    const get_public_ip_ref01_data_dt0 = (await get_public_ip_ref01_ent.load(get_public_ip_ref01_match_dt0)).data()
     assert(null != get_public_ip_ref01_data_dt0)
 
 

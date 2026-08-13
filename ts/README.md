@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 const client = IpifySDK.test()
 
 const getpublicip = await client.GetPublicIp().load()
-// getpublicip is a bare entity populated with mock response data
+// getpublicip is the entity, populated with mock response data
+// — call getpublicip.data() for the record itself
 console.log(getpublicip)
 ```
 
