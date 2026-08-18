@@ -40,7 +40,7 @@ class IpifySDK
         $utility = new IpifyUtility();
         $this->_utility = $utility;
 
-        $config = IpifyConfig::make_config();
+        $config = IpifyConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

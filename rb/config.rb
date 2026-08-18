@@ -1,6 +1,20 @@
 # Ipify SDK configuration
 
 module IpifyConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -26,11 +40,9 @@ module IpifyConfig
         "get_public_ip" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "ip",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
           ],
           "name" => "get_public_ip",
@@ -40,24 +52,19 @@ module IpifyConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "example" => "callback",
                         "kind" => "query",
                         "name" => "callback",
                         "orig" => "callback",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "format",
                         "orig" => "format",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -76,10 +83,8 @@ module IpifyConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {

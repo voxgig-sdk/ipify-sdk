@@ -28,7 +28,7 @@ class IpifySDK
     utility = IpifyUtility.new
     @_utility = utility
 
-    config = IpifyConfig.make_config
+    config = IpifyConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

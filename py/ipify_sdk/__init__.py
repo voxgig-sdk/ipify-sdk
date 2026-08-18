@@ -23,8 +23,8 @@ class IpifySDK:
         utility = IpifyUtility()
         self._utility = utility
 
-        from ipify_sdk.config import make_config
-        config = make_config()
+        from ipify_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,
