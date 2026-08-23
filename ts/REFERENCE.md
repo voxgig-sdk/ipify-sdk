@@ -116,7 +116,7 @@ const get_public_ip = client.GetPublicIp()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | Yes |  |
+| `ip` | `string` | Yes | The public IP address of the requester. |
 
 ### Operations
 

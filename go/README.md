@@ -6,7 +6,7 @@ The Golang SDK for the Ipify API — an entity-oriented client using standard Go
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.GetPublicIp(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -258,7 +258,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"ip"` |  |
+| `"ip"` | The public IP address of the requester. |
 
 Operations: Load.
 
@@ -283,7 +283,7 @@ Create an instance: `getPublicIp := client.GetPublicIp(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
+| `ip` | `string` | The public IP address of the requester. |
 
 #### Example: Load
 

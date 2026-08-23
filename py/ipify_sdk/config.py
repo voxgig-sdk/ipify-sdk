@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Ipify",
+            "slug": "ipify",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,6 +54,7 @@ def make_config():
           {
             "name": "ip",
             "req": True,
+            "short": "The public IP address of the requester.",
             "type": "`$STRING`",
           },
         ],

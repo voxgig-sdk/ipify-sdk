@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "Ipify",
+      slug = "ipify",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -30,6 +33,7 @@ local function make_config()
           {
             ["name"] = "ip",
             ["req"] = true,
+            ["short"] = "The public IP address of the requester.",
             ["type"] = "`$STRING`",
           },
         },

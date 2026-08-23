@@ -19,6 +19,9 @@ module IpifyConfig
     {
       "main" => {
         "name" => "Ipify",
+        "slug" => "ipify",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -42,6 +45,7 @@ module IpifyConfig
             {
               "name" => "ip",
               "req" => true,
+              "short" => "The public IP address of the requester.",
               "type" => "`$STRING`",
             },
           ],

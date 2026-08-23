@@ -93,7 +93,7 @@ get_public_ip = client.GetPublicIp
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `String` | Yes |  |
+| `ip` | `String` | Yes | The public IP address of the requester. |
 
 ### Operations
 

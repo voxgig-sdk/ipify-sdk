@@ -33,6 +33,9 @@ class IpifyConfig
         return [
             "main" => [
                 "name" => "Ipify",
+                "slug" => "ipify",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -56,6 +59,7 @@ class IpifyConfig
             [
               'name' => 'ip',
               'req' => true,
+              'short' => 'The public IP address of the requester.',
               'type' => '`$STRING`',
             ],
           ],

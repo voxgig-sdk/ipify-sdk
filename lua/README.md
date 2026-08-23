@@ -225,7 +225,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
+| `ip` | The public IP address of the requester. |
 
 Operations: Load.
 
@@ -250,7 +250,7 @@ Create an instance: `local get_public_ip = client:GetPublicIp(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
+| `ip` | `string` | The public IP address of the requester. |
 
 #### Example: Load
 

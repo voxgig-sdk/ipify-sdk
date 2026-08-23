@@ -235,7 +235,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
+| `ip` | The public IP address of the requester. |
 
 Operations: Load.
 
@@ -260,7 +260,7 @@ Create an instance: `get_public_ip = client.GetPublicIp`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `String` |  |
+| `ip` | `String` | The public IP address of the requester. |
 
 #### Example: Load
 

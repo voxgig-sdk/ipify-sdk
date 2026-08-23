@@ -36,6 +36,7 @@
               "active": true,
               "name": "ip",
               "req": true,
+              "short": "The public IP address of the requester.",
               "type": "`$STRING`"
             }
           ],

@@ -245,7 +245,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
+| `ip` | The public IP address of the requester. |
 
 Operations: Load.
 
@@ -270,7 +270,7 @@ Create an instance: `$get_public_ip = $client->GetPublicIp();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
+| `ip` | `string` | The public IP address of the requester. |
 
 #### Example: Load
 

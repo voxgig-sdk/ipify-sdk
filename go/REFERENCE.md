@@ -98,7 +98,7 @@ fmt.Println(getPublicIp.GetName()) // "get_public_ip"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | Yes |  |
+| `ip` | `string` | Yes | The public IP address of the requester. |
 
 ### Operations
 
