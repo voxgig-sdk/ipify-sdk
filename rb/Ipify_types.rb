@@ -19,10 +19,14 @@ GetPublicIp = Struct.new(
 
 # Request payload for GetPublicIp#load.
 #
-# @!attribute [rw] ip
+# @!attribute [rw] callback
+#   @return [String, nil]
+#
+# @!attribute [rw] format
 #   @return [String, nil]
 GetPublicIpLoadMatch = Struct.new(
-  :ip,
+  :callback,
+  :format,
   keyword_init: true
 )
 

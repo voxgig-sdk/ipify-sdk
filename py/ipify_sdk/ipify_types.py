@@ -21,4 +21,5 @@ class GetPublicIp(TypedDict):
 
 
 class GetPublicIpLoadMatch(TypedDict, total=False):
-    ip: str
+    callback: str
+    format: str

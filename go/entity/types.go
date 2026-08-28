@@ -19,7 +19,8 @@ type GetPublicIp struct {
 
 // GetPublicIpLoadMatch is the typed request payload for GetPublicIp.LoadTyped.
 type GetPublicIpLoadMatch struct {
-	Ip *string `json:"ip,omitempty"`
+	Callback *string `json:"callback,omitempty"`
+	Format *string `json:"format,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

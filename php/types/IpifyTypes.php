@@ -21,6 +21,7 @@ class GetPublicIp
 /** Request payload for GetPublicIp#load. */
 class GetPublicIpLoadMatch
 {
-    public ?string $ip = null;
+    public ?string $callback = null;
+    public ?string $format = null;
 }
 

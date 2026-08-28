@@ -10,6 +10,7 @@ export interface GetPublicIp {
 }
 
 export interface GetPublicIpLoadMatch {
-  ip?: string
+  callback?: string
+  format?: string
 }
 
