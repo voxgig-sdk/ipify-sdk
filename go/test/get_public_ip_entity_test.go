@@ -50,7 +50,7 @@ func TestGetPublicIpEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		getPublicIpRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.get_public_ip", setup.data)))
+		getPublicIpRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.get_public_ip")))
 		var getPublicIpRef01Data map[string]any
 		if len(getPublicIpRef01DataRaw) > 0 {
 			getPublicIpRef01Data = core.ToMapAny(getPublicIpRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func get_public_ipBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"get_public_ip01", "get_public_ip02", "get_public_ip03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -125,10 +125,22 @@ func get_public_ipBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["IPIFY_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewIpifySDK(core.ToMapAny(mergedOpts))
 	}
