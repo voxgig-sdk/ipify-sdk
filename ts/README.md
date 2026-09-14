@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { IpifySDK } from '@voxgig-sdk/ipify'
+import { IpifySDK } from '@voxgig-sdk/ipify-sdk'
 
 const client = new IpifySDK()
 ```
@@ -401,7 +401,7 @@ ipify/
 Import the SDK from the package root:
 
 ```ts
-import { IpifySDK } from '@voxgig-sdk/ipify'
+import { IpifySDK } from '@voxgig-sdk/ipify-sdk'
 ```
 
 ### Entity state

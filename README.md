@@ -105,7 +105,7 @@ local result, err = client:GetPublicIp():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ipify` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ipify-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/releases) |
 | Python | `voxgig-sdk-ipify` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/releases) |
 | PHP | `voxgig-sdk/ipify` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/ipify-sdk/go` | `go get github.com/voxgig-sdk/ipify-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:GetPublicIp():load()
 ### TypeScript
 
 ```ts
-import { IpifySDK } from '@voxgig-sdk/ipify'
+import { IpifySDK } from '@voxgig-sdk/ipify-sdk'
 
 const client = new IpifySDK()
 
