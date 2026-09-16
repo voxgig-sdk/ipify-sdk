@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.IPIFY_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'get_public_ip.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'get_public_ip.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set IPIFY_TEST_GET_PUBLIC_IP_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "ip", "req": true, "short": "The public IP address of the requester.", "type": "`$STRING`", "index$": 0 }], "name": "get_public_ip", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "query": [{ "active": true, "example": "callback", "kind": "query", "name": "callback", "orig": "callback", "reqd": false, "type": "`$STRING`", "index$": 0 }, { "active": true, "kind": "query", "name": "format", "orig": "format", "reqd": false, "type": "`$STRING`", "index$": 1 }] }, "contract": { "id": "GET /", "json": "{\"operationId\":\"getPublicIp\",\"parameters\":[{\"description\":\"The response format. If not specified, returns plain text.\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"enum\":[\"json\",\"jsonp\"],\"type\":\"string\"}},{\"description\":\"The callback function name for JSONP responses. Only applicable when format=jsonp. Defaults to 'callback' if not specified.\",\"in\":\"query\",\"name\":\"callback\",\"required\":false,\"schema\":{\"default\":\"callback\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/javascript\":{\"examples\":{\"custom\":{\"summary\":\"JSONP with custom callback\",\"value\":\"getip({\\\"ip\\\":\\\"98.207.254.136\\\"});\"},\"default\":{\"summary\":\"JSONP with default callback\",\"value\":\"callback({\\\"ip\\\":\\\"98.207.254.136\\\"});\"}},\"schema\":{\"example\":\"callback({\\\"ip\\\":\\\"98.207.254.136\\\"});\",\"type\":\"string\"}},\"application/json\":{\"examples\":{\"ipv4\":{\"summary\":\"IPv4 address in JSON\",\"value\":{\"ip\":\"98.207.254.136\"}},\"ipv6\":{\"summary\":\"IPv6 address in JSON\",\"value\":{\"ip\":\"2a00:1450:400f:80d::200e\"}}},\"schema\":{\"properties\":{\"ip\":{\"description\":\"The public IP address of the requester. Can be either IPv4 or IPv6 format depending on the endpoint used.\",\"example\":\"98.207.254.136\",\"type\":\"string\"}},\"required\":[\"ip\"],\"type\":\"object\"}},\"text/plain\":{\"examples\":{\"ipv4\":{\"summary\":\"IPv4 address\",\"value\":\"98.207.254.136\"},\"ipv6\":{\"summary\":\"IPv6 address\",\"value\":\"2a00:1450:400f:80d::200e\"}},\"schema\":{\"example\":\"98.207.254.136\",\"type\":\"string\"}}},\"description\":\"Successfully retrieved public IP address\"},\"400\":{\"description\":\"Bad request - invalid parameters\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/", "segments": [], "select": { "exist": ["callback", "format"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "get_public_ip", "name__orig": "get_public_ip", "Name": "GetPublicIp", "name_": "get_public_ip", "name-": "get-public-ip", "NAME": "GET_PUBLIC_IP", "index$": 0 }, { "active": true, "entity": "get_public_ip", "key$": "BasicGetPublicIpFlow", "kind": "basic", "name": "BasicGetPublicIpFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "get_public_ip_ref01", "srcdatavar": "get_public_ip_ref01_data", "suffix": "_dt0" }, "match": {}, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-get_public_ip_ref01" } }], "index$": 0 }] }, 'GetPublicIp');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -102,12 +100,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['IPIFY_TEST_GET_PUBLIC_IP_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'IPIFY_TEST_GET_PUBLIC_IP_ENTID': idmap,
         'IPIFY_TEST_LIVE': 'FALSE',
@@ -115,7 +107,13 @@ function basicSetup(extra) {
     });
     idmap = env['IPIFY_TEST_GET_PUBLIC_IP_ENTID'];
     const live = 'TRUE' === env.IPIFY_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['IPIFY_TEST_GET_PUBLIC_IP_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.IpifySDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -126,7 +124,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -138,7 +137,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.IPIFY_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

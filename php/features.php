@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Ipify SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class IpifyFeatures
@@ -14,8 +17,14 @@ class IpifyFeatures
         switch ($name) {
             case "base":
                 return new IpifyBaseFeature();
+            case "ratelimit":
+                return new IpifyRatelimitFeature();
+            case "retry":
+                return new IpifyRetryFeature();
             case "test":
                 return new IpifyTestFeature();
+            case "timeout":
+                return new IpifyTimeoutFeature();
             default:
                 return new IpifyBaseFeature();
         }
@@ -31,7 +40,10 @@ class IpifyFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

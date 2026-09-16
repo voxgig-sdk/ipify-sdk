@@ -1,12 +1,18 @@
 # Ipify SDK feature factory
 
 from ipify_sdk.feature.base_feature import IpifyBaseFeature
+from ipify_sdk.feature.ratelimit_feature import IpifyRatelimitFeature
+from ipify_sdk.feature.retry_feature import IpifyRetryFeature
 from ipify_sdk.feature.test_feature import IpifyTestFeature
+from ipify_sdk.feature.timeout_feature import IpifyTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: IpifyBaseFeature(),
+    "ratelimit": lambda: IpifyRatelimitFeature(),
+    "retry": lambda: IpifyRetryFeature(),
     "test": lambda: IpifyTestFeature(),
+    "timeout": lambda: IpifyTimeoutFeature(),
 }
 
 
