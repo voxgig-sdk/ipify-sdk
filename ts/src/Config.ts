@@ -127,9 +127,9 @@ class Config {
 
     entity: {
       
-      get_public_ip: {
-      },
-
+        get_public_ip: {
+        },
+  
     }
   }
 

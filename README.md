@@ -105,12 +105,12 @@ local result, err = client:GetPublicIp():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ipify-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/releases) |
-| Python | `voxgig-sdk-ipify` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/releases) |
-| PHP | `voxgig-sdk/ipify` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ipify-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/tags) |
+| Python | `voxgig-sdk-ipify` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/tags) |
+| PHP | `voxgig-sdk/ipify` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/ipify-sdk/go` | `go get github.com/voxgig-sdk/ipify-sdk/go@latest` |
-| Ruby | `voxgig-sdk-ipify` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/releases) |
-| Lua | `voxgig-sdk-ipify` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/releases) |
+| Ruby | `voxgig-sdk-ipify` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/tags) |
+| Lua | `voxgig-sdk-ipify` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipify-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/ipify-sdk/go-cli` | `go install github.com/voxgig-sdk/ipify-sdk/go-cli/cmd/ipify@latest` |
 | Go MCP server | `github.com/voxgig-sdk/ipify-sdk/go-mcp` | `go get github.com/voxgig-sdk/ipify-sdk/go-mcp@latest` |
 
